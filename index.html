@@ -2,108 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBJ | The Legacy</title>
     <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --accent-color: #c5a059;
-            --text-main: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Helvetica Neue', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-        }
-
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-        }
-
-        nav a { color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; }
-
-        header {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.6), #0a0a0a), url('Michael B_ Jordan.jpg');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-        }
-
-        h1 { font-size: 5rem; text-transform: uppercase; margin: 0; }
-
-        .gallery {
-            padding: 100px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery img {
-            width: 100%; height: 450px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: 0.5s;
-        }
-
-        .gallery img:hover { transform: scale(1.03); }
-
-        .cta-section {
-            padding: 100px;
-            text-align: center;
-            background: #111;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            background: var(--accent-color);
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+        :root { --bg: #0a0a0a; --gold: #c5a059; --text: #ffffff; }
+        body { background: var(--bg); color: var(--text); font-family: 'Helvetica Neue', sans-serif; margin: 0; }
+        nav { position: sticky; top: 0; display: flex; justify-content: center; gap: 40px; padding: 25px; background: rgba(0,0,0,0.95); z-index: 1000; }
+        nav a { color: white; text-decoration: none; font-weight: bold; letter-spacing: 2px; font-size: 0.7rem; transition: 0.3s; }
+        nav a:hover { color: var(--gold); }
+        header { height: 85vh; background: linear-gradient(rgba(0,0,0,0.4), #0a0a0a), url('Michael B_ Jordan.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; }
+        h1 { font-size: 5rem; text-transform: uppercase; margin: 10px 0 30px; }
+        .award-tag { letter-spacing: 6px; color: var(--gold); font-size: 0.9rem; font-weight: bold; }
+        .cta-btn { padding: 15px 40px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; font-weight: bold; letter-spacing: 2px; transition: 0.3s; }
+        .cta-btn:hover { background: var(--gold); color: black; }
+        .home-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; padding: 10px; }
+        .home-gallery img { width: 100%; height: 500px; object-fit: cover; }
     </style>
 </head>
 <body>
-
     <nav>
         <a href="index.html">HOME</a>
-        <a href="journey.html">THE JOURNEY</a>
+        <a href="journey.html">JOURNEY</a>
+        <a href="talk.html">TALK TO MICHAEL</a>
     </nav>
-
     <header>
         <div>
-            <p style="letter-spacing: 5px; color: var(--accent-color);">OFFICIAL FAN EXPERIENCE</p>
+            <p class="award-tag">2026 ACADEMY AWARD WINNER</p>
             <h1>Michael B. Jordan</h1>
+            <a href="journey.html" class="cta-btn">EXPLORE THE LEGACY</a>
         </div>
     </header>
-
-    <section class="gallery">
-        <img src=" .jpg" alt="Editorial MBJ">
-        <img src=" -2.jpg" alt="Red Carpet MBJ">
-        <img src=" -4.jpg" alt="MBJ Smile">
+    <section class="home-gallery">
+        <img src=" .jpg">
+        <img src=" -2.jpg">
+        <img src=" -4.jpg">
     </section>
-
-    <section class="cta-section">
-        <h2>Want to talk to Michael?</h2>
-        <p style="margin-bottom: 40px; color: #a0a0a0;">Experience our AI-powered Michael B. Jordan persona.</p>
-        <a href="journey.html#talk" class="btn">START CONVERSATION</a>
-    </section>
-
 </body>
 </html>

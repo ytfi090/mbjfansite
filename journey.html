@@ -2,47 +2,182 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Journey | Michael B. Jordan</title>
     <style>
-        :root { --bg: #0a0a0a; --gold: #c5a059; --text: #ffffff; }
-        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; line-height: 1.6; }
-        nav { position: sticky; top: 0; display: flex; justify-content: center; gap: 40px; padding: 25px; background: #000; z-index: 1000; }
-        nav a { color: white; text-decoration: none; font-weight: bold; letter-spacing: 2px; font-size: 0.7rem; }
-        .container { padding: 100px 10%; }
-        h2 { font-size: 3rem; color: var(--gold); text-transform: uppercase; margin-bottom: 30px; }
-        .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: center; }
-        .history-grid img { width: 100%; border-radius: 15px; }
-        .vault-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .vault-card { background: #111; padding: 30px; border-radius: 10px; border-left: 4px solid var(--gold); }
-        .vault-card span { font-size: 0.8rem; color: var(--gold); font-weight: bold; }
-        .vault-card p { font-size: 0.9rem; color: #a0a0a0; }
+        :root {
+            --bg: #0a0a0a;
+            --gold: #c5a059;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav a:hover, nav a.active { color: var(--gold); }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Legacy Grid */
+        .legacy-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .legacy-image img {
+            width: 100%;
+            border-radius: 10px;
+            filter: grayscale(20%);
+            transition: 0.5s;
+        }
+
+        .legacy-image img:hover { filter: grayscale(0%); }
+
+        .legacy-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .legacy-text p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Timeline / Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #111;
+            padding: 40px;
+            border-radius: 15px;
+            border-top: 3px solid var(--gold);
+            transition: 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-10px); background: #1a1a1a; }
+
+        .project-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .project-card .year { color: var(--gold); font-weight: bold; display: block; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .legacy-row { grid-template-columns: 1fr; gap: 30px; }
+            .section-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
+
     <nav>
         <a href="index.html">HOME</a>
-        <a href="journey.html">JOURNEY</a>
+        <a href="journey.html" class="active">JOURNEY</a>
         <a href="talk.html">TALK TO MICHAEL</a>
     </nav>
+
     <div class="container">
-        <section class="history-grid">
-            <div class="history-text">
-                <h2>The History</h2>
-                <p>Born in 1987 and raised in Newark, MBJ's story is one of absolute focus. From Kmart child modeling to the breakthrough role of Wallace in <em>The Wire</em>, he has spent decades honing his craft.</p>
-                <p>In 2026, he solidified his status as a Hollywood legend, winning the <strong>Best Actor Oscar</strong> for his dual role in Ryan Coogler's <em>Sinners</em>.</p>
+        <h1 class="section-title">The Legacy</h1>
+
+        <div class="legacy-row">
+            <div class="legacy-text">
+                <h2>Academy Award Winner</h2>
+                <p>In 2026, Michael B. Jordan reached the pinnacle of cinema, winning the <strong>Oscar for Best Actor</strong> for his haunting dual performance as twins Smoke and Stack in Ryan Coogler's <em>Sinners</em>.</p>
+                <p>This victory solidified his place as the definitive leading man of his generation, blending raw emotional depth with unmatched physical presence.</p>
             </div>
-            <img src=" -3.jpg" alt="MBJ History">
-        </section>
-        <section style="margin-top: 80px;">
-            <h2>The Film Vault</h2>
-            <div class="vault-grid">
-                <div class="vault-card"><span>2027</span><h4>The Thomas Crown Affair</h4><p>Directed and starring MBJ. A modern heist epic.</p></div>
-                <div class="vault-card"><span>2026</span><h4>Swapped</h4><p>Lead voice role in the Netflix animated film (May 2026).</p></div>
-                <div class="vault-card"><span>2025</span><h4>Sinners</h4><p>The Oscar-winning performance as twins Smoke and Stack.</p></div>
-                <div class="vault-card"><span>2023</span><h4>Creed III</h4><p>Directed and starred. Reclaiming the legacy.</p></div>
-                <div class="vault-card"><span>2018</span><h4>Black Panther</h4><p>As the legendary Erik Killmonger.</p></div>
+            <div class="legacy-image">
+                <img src="mbj3.jpg" alt="Michael B. Jordan Oscar Victory">
             </div>
-        </section>
+        </div>
+
+        <h1 class="section-title">Career Milestones</h1>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="year">2002 - 2013</span>
+                <h3>The Breakthrough</h3>
+                <p>From the heartbreaking role of Wallace in <em>The Wire</em> to the powerful <em>Fruitvale Station</em>, Michael proved early on that he was a force to be felt.</p>
+            </div>
+
+            <div class="project-card">
+                <span class="year">2015 - 2023</span>
+                <h3>The Creed Era</h3>
+                <p>Redefining the sports drama, Adonis Creed became a global icon. In 2023, Michael stepped behind the camera to direct <em>Creed III</em>, a massive critical and box-office hit.</p>
+            </div>
+
+            <div class="project-card">
+                <span class="year">2018</span>
+                <h3>Killmonger</h3>
+                <p>As Erik Killmonger in <em>Black Panther</em>, he delivered one of the most complex and celebrated performances in the history of the MCU.</p>
+            </div>
+
+            <div class="project-card">
+                <span class="year">2025 - 2026</span>
+                <h3>The New Era</h3>
+                <p>With <em>Sinners</em> and upcoming projects like <em>The Thomas Crown Affair</em> and <em>Battlefield</em>, MBJ continues to reshape Hollywood as both an elite actor and visionary director.</p>
+            </div>
+        </div>
+
+        <div class="legacy-row" style="margin-top: 100px;">
+            <div class="legacy-image">
+                <img src="mbj4.jpg" alt="MBJ Behind the Scenes">
+            </div>
+            <div class="legacy-text">
+                <h2>Beyond the Screen</h2>
+                <p>More than just an actor, Michael is a lifelong fan of anime and gaming—passions that influence his dynamic directing style and storytelling choices.</p>
+                <p>His production company, Outlier Society, continues to push for diversity and inclusion across the entertainment industry.</p>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>

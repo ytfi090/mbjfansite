@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talk to Michael B. Jordan</title>
+    <style>
+        :root { --bg: #0a0a0a; --gold: #c5a059; --text: #ffffff; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; }
+        nav { position: sticky; top: 0; display: flex; justify-content: center; gap: 40px; padding: 25px; background: #000; }
+        nav a { color: white; text-decoration: none; font-weight: bold; letter-spacing: 2px; font-size: 0.7rem; }
+        .chat-wrapper { max-width: 650px; margin: 100px auto; background: #141414; border-radius: 20px; overflow: hidden; border: 1px solid #222; }
+        .chat-header { padding: 20px; background: #000; display: flex; align-items: center; gap: 15px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        #chat-box { height: 450px; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #0a0a0a; }
+        .msg { padding: 14px 20px; border-radius: 15px; max-width: 80%; }
+        .user-msg { background: var(--gold); color: black; align-self: flex-end; font-weight: 500; }
+        .ai-msg { background: #222; align-self: flex-start; }
+        .input-area { padding: 20px; display: flex; gap: 10px; background: #141414; }
+        input { flex: 1; padding: 15px; background: #222; border: none; color: white; border-radius: 10px; }
+        button { background: var(--gold); border: none; padding: 0 35px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="journey.html">JOURNEY</a>
+        <a href="talk.html">TALK TO MICHAEL</a>
+    </nav>
+    <div class="chat-wrapper">
+        <div class="chat-header">
+            <img src="Michael B_ Jordan.jpg" class="avatar">
+            <h3>Michael B. Jordan</h3>
+        </div>
+        <div id="chat-box">
+            <div class="msg ai-msg">What's up? I'm Michael. We can talk about my Oscar win, the Creed movies, or my love for anime. What's on your mind?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Ask Michael something...">
+            <button onclick="sendMessage()">CONNECT</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const box = document.getElementById('chat-box');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            box.innerHTML += `<div class="msg user-msg">${msg}</div>`;
+            input.value = '';
+            box.scrollTop = box.scrollHeight;
+
+            const loadingId = "load-" + Date.now();
+            box.innerHTML += `<div class="msg ai-msg" id="${loadingId}">...</div>`;
+
+            try {
+                const response = await fetch('https://mbjfansite.richurehan00.workers.dev', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
+                const data = await response.text();
+                document.getElementById(loadingId).innerText = data;
+            } catch (err) {
+                document.getElementById(loadingId).innerText = "Connection lost. I'm taking a break.";
+            }
+            box.scrollTop = box.scrollHeight;
+        }
+    </script>
+</body>
+</html>

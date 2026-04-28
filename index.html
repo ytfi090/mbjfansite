@@ -5,58 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBJ | The Legacy</title>
     <style>
-        /* --- STYLE.CSS (Editorial Dark Mode) --- */
         :root {
             --bg-color: #0a0a0a;
-            --accent-color: #c5a059; /* Gold accent */
+            --accent-color: #c5a059;
             --text-main: #ffffff;
-            --text-dim: #a0a0a0;
             --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Hero Section */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+        }
+
+        nav a { color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; }
+
         header {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), var(--bg-color)), 
-                        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000'); /* Placeholder: High-end Cinematic */
+            background: linear-gradient(rgba(0,0,0,0.6), #0a0a0a), url('Michael B_ Jordan.jpg');
             background-size: cover;
             background-position: center;
+            text-align: center;
         }
 
-        h1 {
-            font-size: 5rem;
-            letter-spacing: -2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+        h1 { font-size: 5rem; text-transform: uppercase; margin: 0; }
 
-        .subtitle {
-            color: var(--accent-color);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        /* Gallery Section */
         .gallery {
             padding: 100px 5%;
             display: grid;
@@ -65,301 +55,55 @@
         }
 
         .gallery img {
-            width: 100%;
-            height: 400px;
+            width: 100%; height: 450px;
             object-fit: cover;
-            filter: grayscale(100%);
+            border-radius: 8px;
             transition: 0.5s;
-            border-radius: 4px;
         }
 
-        .gallery img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.02);
+        .gallery img:hover { transform: scale(1.03); }
+
+        .cta-section {
+            padding: 100px;
+            text-align: center;
+            background: #111;
         }
 
-        /* AI Chat Widget */
-        #chat-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 350px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
-
-        .chat-header {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-weight: bold;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-header span {
-            width: 8px;
-            height: 8px;
-            background: #00ff00;
-            border-radius: 50%;
-        }
-
-        #chat-box {
-            height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            font-size: 0.9rem;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .msg {
-            max-width: 80%;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .user-msg { background: var(--accent-color); color: #000; align-self: flex-end; }
-        .ai-msg { background: rgba(255,255,255,0.1); color: #fff; align-self: flex-start; }
-
-        .chat-input-area {
-            padding: 15px;
-            display: flex;
-            gap: 10px;
-        }
-
-        input {
-            flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px;
-            color: white;
-            border-radius: 5px;
-        }
-
-        button {
+        .btn {
+            padding: 15px 40px;
             background: var(--accent-color);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
+            color: black;
+            text-decoration: none;
             font-weight: bold;
+            border-radius: 5px;
         }
-
-        /* Custom Scrollbar */
-        #chat-box::-webkit-scrollbar { width: 5px; }
-        #chat-box::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 10px; }
-
-        .chat-hero {
-    padding: 100px 5%;
-    background: #0f0f0f;
-    display: flex;
-    justify-content: center;
-}
-
-.chat-hero-content {
-    display: flex;
-    max-width: 1100px;
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.chat-image {
-    flex: 1;
-    display: none; /* Hidden on mobile */
-}
-
-@media (min-width: 768px) {
-    .chat-image { display: block; }
-}
-
-.chat-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.chat-interface {
-    flex: 1.2;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-interface h2 {
-    color: var(--accent-color);
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.hero-box {
-    height: 350px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.hero-input-area {
-    display: flex;
-    gap: 10px;
-}
-
-.hero-input-area input {
-    flex: 1;
-    padding: 15px;
-    font-size: 1rem;
-}
-
-.hero-input-area button {
-    padding: 0 30px;
-}
     </style>
 </head>
 <body>
 
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="journey.html">THE JOURNEY</a>
+    </nav>
+
     <header>
         <div>
-            <p class="subtitle">Official Fan Experience</p>
+            <p style="letter-spacing: 5px; color: var(--accent-color);">OFFICIAL FAN EXPERIENCE</p>
             <h1>Michael B. Jordan</h1>
         </div>
     </header>
 
     <section class="gallery">
-        <img src="https://whur.com/wp-content/uploads/sites/25/2026/01/AP-Michael-B.-Jordan.jpg?resize=768,576" alt="Film">
-        <img src="data:image/jpeg;base64,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" alt="Style">
-        <img src="https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.biography.com%2Factors%2Fmichael-b-jordan&ved=0CBYQjRxqFwoTCOizoNHekJQDFQAAAAAdAAAAABAG&opi=89978449" alt="Action">
+        <img src=" .jpg" alt="Editorial MBJ">
+        <img src=" -2.jpg" alt="Red Carpet MBJ">
+        <img src=" -4.jpg" alt="MBJ Smile">
     </section>
 
-    <div id="chat-container">
-        <div class="chat-header">
-            <span></span> Chat with Michael
-        </div>
-        <div id="chat-box">
-            <div class="msg ai-msg">Hey! It's Michael. Glad you're here. What's on your mind?</div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="user-input" placeholder="Ask about Creed, Anime, or Films...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
-    <section id="talk-to-mbj" class="chat-hero">
-    <div class="chat-hero-content">
-        <div class="chat-image">
-            <img src="data:image/jpeg;base64,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" alt="Michael B. Jordan Professional">
-        </div>
-        <div class="chat-interface">
-            <h2>The Outlier Conversation</h2>
-            <p>Connect with the vision behind the lens. Ask Michael about his journey, his production company, or his love for anime.</p>
-            <div id="hero-chat-box" class="hero-box">
-                <div class="msg ai-msg">What's up? I'm Michael. Always down to talk shop or just vibe. What's on your mind?</div>
-            </div>
-            <div class="hero-input-area">
-                <input type="text" id="hero-user-input" placeholder="Message Michael...">
-                <button onclick="sendHeroMessage()">Connect</button>
-            </div>
-        </div>
-    </div>
-</section>
+    <section class="cta-section">
+        <h2>Want to talk to Michael?</h2>
+        <p style="margin-bottom: 40px; color: #a0a0a0;">Experience our AI-powered Michael B. Jordan persona.</p>
+        <a href="journey.html#talk" class="btn">START CONVERSATION</a>
+    </section>
 
-    <script>
-        /* --- SCRIPT.JS (Cloudflare Connector) --- */
-        async function sendMessage() {
-            const inputField = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
-            const message = inputField.value.trim();
-
-            if (!message) return;
-
-            // 1. Add User Message to UI
-            const userDiv = document.createElement('div');
-            userDiv.className = 'msg user-msg';
-            userDiv.innerText = message;
-            chatBox.appendChild(userDiv);
-            inputField.value = '';
-
-            // 2. Add "Typing" indicator
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'msg ai-msg';
-            typingDiv.innerText = '...';
-            chatBox.appendChild(typingDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            try {
-                // 3. Call your Cloudflare Worker
-                const response = await fetch('https://mbjfansite.richurehan00.workers.dev', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
-                });
-
-                const data = await response.text();
-                
-                // 4. Update UI with AI response
-                typingDiv.innerText = data;
-            } catch (error) {
-                typingDiv.innerText = "Sorry, I'm having trouble connecting right now.";
-                console.error(error);
-            }
-            
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        // Allow "Enter" key to send
-        document.getElementById('user-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') sendMessage();
-        });
-        async function sendHeroMessage() {
-    const inputField = document.getElementById('hero-user-input');
-    const chatBox = document.getElementById('hero-chat-box');
-    const message = inputField.value.trim();
-
-    if (!message) return;
-
-    // Add User Message
-    const userDiv = document.createElement('div');
-    userDiv.className = 'msg user-msg';
-    userDiv.innerText = message;
-    chatBox.appendChild(userDiv);
-    inputField.value = '';
-
-    // Add Typing
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'msg ai-msg';
-    typingDiv.innerText = '...';
-    chatBox.appendChild(typingDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    try {
-const response = await fetch('https://mbjfansite.richurehan00.workers.dev', { ...
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: message })
-        });
-
-        const data = await response.text();
-        typingDiv.innerText = data;
-    } catch (error) {
-        typingDiv.innerText = "Connection lost. Check back soon.";
-    }
-    
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-    </script>
 </body>
 </html>
